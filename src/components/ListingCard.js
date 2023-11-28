@@ -9,16 +9,16 @@ function ListingCard({ dataList, setData, listing, passArrayToApp }) {
   }
   
   function handleDelete() {
-    const newArray = dataList.filter(item => item.id !== listing.id)
-    console.log(newArray)
-    setData(newArray)
-
+    
     fetch ('http://localhost:6001/listings/' + listing.id, {
       method: "DELETE",
     })
     .then(res => res.json())
     .then(data => {
       console.log(data)
+      const newArray = dataList.filter(item => item.id !== listing.id)
+      console.log(newArray)
+      setData(newArray)
     })
   }
 

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import ListingsContainer from "./ListingsContainer";
+import NewItemListing from "./NewItemListing";
 
 function App() {
 
   const [dataList, setDataList] = useState([])
   const [search, setSearch] = useState('')
+  const [newItem, setNewItem] = useState('')
 
   console.log(search)
   console.log("bye")
@@ -53,10 +55,14 @@ function App() {
     setSearch(textInput)
   }
 
+  function bringNewItemUp(newData) {
+    setNewItem(newData)
+  }
+
   return (
     <div className="app">
       <Header changeSearch={changeSearch} />
-      
+      <NewItemListing bringNewItemUp={bringNewItemUp} newItem={newItem} setDataList={setDataList} dataList={dataList} />
       <ListingsContainer dataList={dataList} setData={setData} search={search}/>
     </div>
   );

@@ -8,17 +8,21 @@ function ListingsContainer({ dataList, setData, passListingToApp, search }) {
   //   setDataList(dataList.filter((item) => listingId !== item.id))
   // }
 
-  const searchedText = dataList.filter((item) => item.description.includes(search))
+  const searchedText = dataList.filter((item) => item.description.toLowerCase().includes(search.toLowerCase()))
 
-  //sorting alphabetically
-  const sortedLocation = [...searchedText].sort((a,b) => {
+  // sorting alphabetically
+  // const sortedLocation = [...searchedText].sort((a,b) => {
+  //   return a.location.localeCompare(b.location);
+  // })
+
+  searchedText.sort((a,b) => {
     return a.location.localeCompare(b.location);
   })
 
   return (
     <main>
       <ul className="cards">
-        {sortedLocation.map((listing) => <ListingCard dataList={dataList} setData={setData} listing={listing} key={listing.description} passArrayToApp={passListingToApp} />)
+        {searchedText.map((listing) => <ListingCard dataList={dataList} setData={setData} listing={listing} key={listing.description} passArrayToApp={passListingToApp} />)
       }
       </ul>
     </main>
